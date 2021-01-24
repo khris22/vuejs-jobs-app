@@ -1,15 +1,47 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <Jobs v-bind:jobs="jobs"/>
+  </div>
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Jobs from './components/Jobs.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Jobs
+  },
+  data() {
+    return {
+      jobs: [
+        {
+          id: 1,
+          title: "Software Developer",
+          skills: ["Javascript", "html", "css"],
+          description: "Entry level position for Company A"
+        },
+        {
+          id: 2,
+          title: "Frontend Dev",
+          skills: ["React", "html", "css"],
+          description: "Needs to have intermediate knowledge in React"
+        },
+        {
+          id: 3,
+          title: "Senior Backend Dev",
+          skills: ["Java"],
+          description: "5 years experience in Java"
+        },
+        {
+          id: 4,
+          title: "UX/UI Designer",
+          skills: ["html", "css", "materialUI"],
+          description: "Looking for someone with design passion"
+        },
+      ]
+    }
   }
 }
 </script>
