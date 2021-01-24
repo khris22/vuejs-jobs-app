@@ -1,16 +1,22 @@
 <template>
   <div class="jobs">
-    <h1>Jobs List</h1>
+   
     <div v-bind:key="job.id" v-for="job in jobs">
-        <h3>{{ job.title }}</h3>
+        <Job v-bind:job="job" v-on:del-job="$emit('del-job', job.id)" />
     </div>
   </div>
 </template>
 
+
 <script>
+import Job from './Job.vue'
+
 export default {
   name: 'Jobs',
-  props: ["jobs"]
+  components: {
+      Job
+  },
+  props: ["jobs"], 
 }
 </script>
 
