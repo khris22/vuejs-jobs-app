@@ -1,16 +1,23 @@
 <template>
   <div id="app">
-    <Jobs v-bind:jobs="jobs"/>
+    <Navbar />
+    <router-view/>
+    <AddJob v-on:add-job="addJob" />
+    <Jobs v-bind:jobs="jobs" v-on:del-job="deleteJob"/>
   </div>
 
 </template>
 
 <script>
+import Navbar from './components/layout/Navbar.vue'
 import Jobs from './components/Jobs.vue'
+import AddJob from './components/AddJob.vue'
 
 export default {
   name: 'App',
   components: {
+    Navbar,
+    AddJob,
     Jobs
   },
   data() {
@@ -42,6 +49,15 @@ export default {
         },
       ]
     }
+  },
+  methods: {
+    addJob(newJob) {
+      // copy what's on the original array and add the new one
+      this.jobs = [...this.jobs, newJob]
+    },
+    deleteJob(id) {
+      this.jobs = this.jobs.filter( job => job.id !== id )
+    }
   }
 }
 </script>
@@ -49,10 +65,18 @@ export default {
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 60px;
 }
+.btn {
+    display: inline-block;
+    border: none;
+    background: #555;
+    color: #fff;
+    padding: 7px 20px;
+    cursor: pointer;
+  }
+  .btn:hover {
+    background: #666;
+  }
 </style>
