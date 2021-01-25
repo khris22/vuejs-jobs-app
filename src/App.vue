@@ -51,6 +51,13 @@ export default {
     }
   },
   methods: {
+    // created is like ComponentDidMount on React
+    // Mounts the data right away when component loads
+    created() {
+    // fetch the api here (use fetch or axios)
+    console.log("Use Fetch/Axios here to populate the DOM after mounting")
+    
+    },
     addJob(newJob) {
       // copy what's on the original array and add the new one
       this.jobs = [...this.jobs, newJob]

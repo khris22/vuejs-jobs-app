@@ -2,8 +2,8 @@
 <header class="header">
      <h1>Jobs List</h1>
     <div id="nav">
-      <router-link to="/">Jobs</router-link> |
-      <router-link to="/about">About</router-link>
+      <!-- <router-link to="/">Jobs</router-link> |
+      <router-link to="/about">About</router-link> -->
     </div>
 
 </header>
