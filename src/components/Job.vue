@@ -6,6 +6,7 @@
         <div v-bind:key="skill.id" v-for="skill in job.skills">
             {{ skill }}
         </div>
+        <button > Edit </button>
         <button @click="$emit('del-job', job.id)" class="del-job"> Delete </button>
     </div>
     

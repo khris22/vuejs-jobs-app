@@ -56,7 +56,15 @@ export default {
     created() {
     // fetch the api here (use fetch or axios)
     console.log("Use Fetch/Axios here to populate the DOM after mounting")
-    
+    // if using fetch:
+    // fetch('https://---- api goes here -----')
+    //   .then(response => response.json())
+    //   .then(data => (this.jobs = data))
+
+    // if using axios:
+    // axios.get('https://---- api goes here -----')
+    //   .then(response => this.jobs = response.data)
+    //   .catch(error => console.log(error))
     },
     addJob(newJob) {
       // copy what's on the original array and add the new one
