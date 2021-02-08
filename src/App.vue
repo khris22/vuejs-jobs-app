@@ -3,7 +3,8 @@
     <Navbar />
     <router-view/>
     <AddJob v-on:add-job="addJob" />
-    <Jobs v-bind:jobs="jobs" v-on:del-job="deleteJob"/>
+    <input type="text" v-model="search" placeholder="Search title">
+    <Jobs v-bind:filterJobs="filterJobs" v-on:del-job="deleteJob"/>
   </div>
 
 </template>
@@ -47,7 +48,8 @@ export default {
           skills: ["html", "css", "materialUI"],
           description: "Looking for someone with design passion"
         },
-      ]
+      ],
+       search: ''
     }
   },
   methods: {
@@ -72,6 +74,17 @@ export default {
     },
     deleteJob(id) {
       this.jobs = this.jobs.filter( job => job.id !== id )
+    }
+  },
+  computed: {
+// post.title.toLowerCase().includes(this.search.toLowerCase())
+
+    filterJobs() {
+      console.log("search", this.search)
+     return this.jobs.filter(job => {
+      //  return job.title.match(this.search)
+       return job.title.toLowerCase().includes(this.search.toLowerCase())
+       })
     }
   }
 }
