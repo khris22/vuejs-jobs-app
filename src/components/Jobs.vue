@@ -2,7 +2,7 @@
   <div class="jobs">
    
     <div v-bind:key="job.id" v-for="job in filterJobs">
-        <Job v-bind:job="job" v-on:del-job="$emit('del-job', job.id)" />
+        <Job v-bind:job="job" v-on:del-job="$emit('del-job', job.id)" v-bind:jobs="jobs" v-on:update-job="$emit('update-job', updatedJob)"/>
     </div>
   </div>
 </template>
@@ -16,7 +16,7 @@ export default {
   components: {
       Job
   },
-  props: ["filterJobs"], 
+  props: ["filterJobs", "jobs"], 
 }
 </script>
 

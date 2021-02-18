@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <Navbar />
-    <router-view/>
+    <!-- <router-view/> -->
     <AddJob v-on:add-job="addJob" />
     <input type="text" v-model="search" placeholder="Search title">
-    <Jobs v-bind:filterJobs="filterJobs" v-on:del-job="deleteJob"/>
+    <Jobs v-bind:filterJobs="filterJobs" v-on:del-job="deleteJob" v-bind:jobs="jobs" v-on:update-job="updateJobDetails"/>
   </div>
 
 </template>
@@ -70,17 +70,22 @@ export default {
     },
     addJob(newJob) {
       // copy what's on the original array and add the new one
+      console.log("CREATE", newJob)
       this.jobs = [...this.jobs, newJob]
     },
     deleteJob(id) {
       this.jobs = this.jobs.filter( job => job.id !== id )
+    },
+    updateJobDetails(updatedJob) {
+      console.log('HERE', updatedJob)
+
     }
   },
   computed: {
 // post.title.toLowerCase().includes(this.search.toLowerCase())
 
     filterJobs() {
-      console.log("search", this.search)
+      // console.log("search", this.search)
      return this.jobs.filter(job => {
       //  return job.title.match(this.search)
        return job.title.toLowerCase().includes(this.search.toLowerCase())
