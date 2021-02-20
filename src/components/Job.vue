@@ -40,6 +40,8 @@
 <script>
 export default {
     name: "Job",
+    // acts like props to avoid pass through components
+    inject: ['editJob'],
     props: ["job", "jobs"],
     data() {
     return {
@@ -70,10 +72,16 @@ export default {
         //    })
             console.log("EDIT", updatedJob)
             // from grandchild to App, better use vuex?
-            this.$parent.$emit('update-job', updatedJob)
+            // this.$parent.$emit('update-job', updatedJob)
+            
             // using listeners: 
             // update: listeners are deprecated
+            // just emit is used
             // this.$emit('update-job', updatedJob)
+
+            // using inject
+            this.editJob(updatedJob)
+
             this.isEditing = !this.isEditing
         }
     }

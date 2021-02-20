@@ -4,7 +4,8 @@
     <!-- <router-view/> -->
     <AddJob v-on:add-job="addJob" />
     <input type="text" v-model="search" placeholder="Search title">
-    <Jobs v-bind:filterJobs="filterJobs" v-on:del-job="deleteJob" v-bind:jobs="jobs" v-on:update-job="updateJobDetails"/>
+    <Jobs v-bind:filterJobs="filterJobs" v-on:del-job="deleteJob" v-bind:jobs="jobs" />
+    <!-- v-on:update-job="updateJobDetails" : to use&listen emit -->
   </div>
 
 </template>
@@ -52,6 +53,22 @@ export default {
        search: ''
     }
   },
+  // Will provide data in other places in your app that's not directly a child
+  // to avoid duplication of passing down data, use it as a function instead
+  // provide: { jobs: []},
+  // provide() {
+  //   return {
+  //     jobs: this.jobs
+  //   }
+  // },
+
+  // listen to an emit?
+  provide() {
+    return {
+      editJob: this.updateJobDetails
+    }
+  },
+
   methods: {
     // created is like ComponentDidMount on React
     // Mounts the data right away when component loads
