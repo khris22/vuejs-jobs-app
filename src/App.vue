@@ -71,13 +71,27 @@ export default {
     addJob(newJob) {
       // copy what's on the original array and add the new one
       console.log("CREATE", newJob)
+      // this.jobs.push(newJob)
       this.jobs = [...this.jobs, newJob]
     },
     deleteJob(id) {
       this.jobs = this.jobs.filter( job => job.id !== id )
     },
     updateJobDetails(updatedJob) {
+      // can also deconstruct
+      // const { title } = updatedJob
       console.log('HERE', updatedJob)
+      // this.jobs.filter((job) => {
+      //       if(job.id === updatedJob.id) {
+      //         job.title = updatedJob.title
+      //         job.description = updatedJob.description
+      //         job.skills=updatedJob.skills
+      //       }
+      // })
+      const jobFound = this.jobs.find((job) => job.id === updatedJob.id)
+      jobFound.title = updatedJob.title
+      jobFound.description = updatedJob.description
+      jobFound.skills=updatedJob.skills
 
     }
   },

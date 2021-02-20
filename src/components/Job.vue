@@ -44,10 +44,10 @@ export default {
     data() {
     return {
         isEditing: false,
-        id: null,
-        title: '',
-        description: '',
-        skills: []
+        id: this.job.id,
+        title: this.job.title,
+        description: this.job.description,
+        skills: this.job.skills
     }},
     methods: {
         updateJob() {
@@ -55,21 +55,24 @@ export default {
             this.isEditing = !this.isEditing
         },
         updateJobDetails() {
-            // const updatedJob = {
-            //     id: this.job.id,
-            //     title: this.title,
-            //     description: this.description,
-            //     skills: this.skills
-            // }
-           this.jobs.filter((job) => {
-               if(job.id === this.id) {
-                   job.title = this.title
-                   job.description = this.description
-                   job.skills=this.skills
-               }
-
-           })
-            console.log("EDIT", this.job)
+            let updatedJob = {
+                id: this.id,
+                title: this.title,
+                description: this.description,
+                skills: this.skills
+            }
+        //    const updatedJob = this.jobs.filter((job) => {
+        //        if(job.id === this.id) {
+        //            job.title = this.title
+        //            job.description = this.description
+        //            job.skills=this.skills
+        //        }
+        //    })
+            console.log("EDIT", updatedJob)
+            // from grandchild to App, better use vuex?
+            this.$parent.$emit('update-job', updatedJob)
+            // using listeners: 
+            // update: listeners are deprecated
             // this.$emit('update-job', updatedJob)
             this.isEditing = !this.isEditing
         }
