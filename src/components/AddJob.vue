@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { v4 as uuidv4 } from 'uuid'
+// import { v4 as uuidv4 } from 'uuid'
 
 export default {
     name: "AddJob",
@@ -26,16 +26,32 @@ export default {
     },
     methods: {
         addJob() {
-            const newJob = {
-                id: uuidv4(),
+            // const newJob = {
+            //     id: uuidv4(),
+            //     title: this.title,
+            //     description: this.description,
+            //     skills: this.skills
+            // }
+            // this.$emit('add-job', newJob)
+            
+            // testing firebase
+            fetch('https://vue-jobs-test-default-rtdb.firebaseio.com/jobs.json', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
                 title: this.title,
                 description: this.description,
                 skills: this.skills
-            }
-            this.$emit('add-job', newJob)
+              })
+            })
+
+
             this.title = ''
             this.description = ''
             this.skills = []
+
         }
     } 
     

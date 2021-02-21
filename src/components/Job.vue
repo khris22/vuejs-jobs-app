@@ -42,6 +42,7 @@ export default {
     name: "Job",
     // acts like props to avoid pass through components
     inject: ['editJob'],
+    // does not need to pass down the whole jobs array here
     props: ["job", "jobs"],
     data() {
     return {
